@@ -33,11 +33,11 @@ def main():
         # Carga el modelo desde el archivo cifar10_model.h5
             model = tf.keras.models.load_model(model_path)
             print("Modelo cargado exitosamente.")
+            predictions = model.predict(img_array)
             pass
         else:
             print(f"No se encontró el archivo {model_filename} en el directorio {current_directory}. Verifica la ruta y el nombre del archivo.")
 
-        predictions = model.predict(img_array)
         cifar10_classes = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'frog', 'horse', 'ship', 'truck', 'dog']
 
         fig, ax = plt.subplots()
