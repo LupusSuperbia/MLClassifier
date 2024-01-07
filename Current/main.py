@@ -1,7 +1,7 @@
 import numpy as np 
 import matplotlib.pyplot as plt 
 import streamlit as st 
-
+import os
 from PIL import Image
 
 import tensorflow as tf
@@ -17,10 +17,24 @@ def main():
         st.image(image, use_column_width=True)
         resized_image = image.resize((32, 32))
         img_array = np.array(resized_image) / 255
-        print(img_array)
+
         img_array = img_array.reshape((1, 32, 32, 3))
 
-        model = tf.keras.models.load_model('cifar10_model.h5')
+        # Obtiene la ruta del directorio actual
+        current_directory = os.getcwd()
+
+        # Nombre del archivo del modelo
+        model_filename = 'cifar10_model.h5'
+
+        # Combina la ruta actual con el nombre del archivo del modelo
+        model_path = os.path.join(current_directory, model_filename)
+
+        if os.path.exists(model_path):
+        # Carga el modelo desde el archivo cifar10_model.h5
+            model = tf.keras.models.load_model(model_path)
+            print("Modelo cargado exitosamente.")
+        else:
+            print(f"No se encontró el archivo {model_filename} en el directorio {current_directory}. Verifica la ruta y el nombre del archivo.")
 
         predictions = model.predict(img_array)
         cifar10_classes = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'frog', 'horse', 'ship', 'truck', 'dog']
