@@ -34,21 +34,21 @@ def main():
             model = tf.keras.models.load_model(model_path)
             print("Modelo cargado exitosamente.")
             predictions = model.predict(img_array)
+            cifar10_classes = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'frog', 'horse', 'ship', 'truck', 'dog']
+
+            fig, ax = plt.subplots()
+            y_pos = np.arange(len(cifar10_classes))
+            ax.barh(y_pos, predictions[0], align='center')
+            ax.set_yticks(y_pos)
+            ax.set_yticklabels(cifar10_classes)
+            ax.invert_yaxis()
+            ax.set_xlabel('Probability')
+            ax.set_title('CIFAR10 Predictions')
+            st.pyplot(fig=fig)
             pass
         else:
             print(f"No se encontró el archivo {model_filename} en el directorio {current_directory}. Verifica la ruta y el nombre del archivo.")
 
-        cifar10_classes = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'frog', 'horse', 'ship', 'truck', 'dog']
-
-        fig, ax = plt.subplots()
-        y_pos = np.arange(len(cifar10_classes))
-        ax.barh(y_pos, predictions[0], align='center')
-        ax.set_yticks(y_pos)
-        ax.set_yticklabels(cifar10_classes)
-        ax.invert_yaxis()
-        ax.set_xlabel('Probability')
-        ax.set_title('CIFAR10 Predictions')
-        st.pyplot(fig=fig)
     else : 
         st.text('No has subido ninguna imagen')
 
