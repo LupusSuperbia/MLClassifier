@@ -33,6 +33,7 @@ def main():
         # Carga el modelo desde el archivo cifar10_model.h5
             model = tf.keras.models.load_model(model_path)
             print("Modelo cargado exitosamente.")
+            pass
         else:
             print(f"No se encontró el archivo {model_filename} en el directorio {current_directory}. Verifica la ruta y el nombre del archivo.")
 
