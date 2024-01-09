@@ -24,7 +24,7 @@ def main():
         current_directory = os.getcwd()
 
         # Nombre del archivo del modelo
-        model_filename = 'cifar10_model.h5'
+        model_filename = 'Current/cifar10_model.h5'
 
         # Combina la ruta actual con el nombre del archivo del modelo
         model_path = os.path.join(current_directory, model_filename)
