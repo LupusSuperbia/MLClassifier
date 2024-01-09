@@ -9,7 +9,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 
 def main(): 
     st.title('Cifar10 Web Classifier')
-    st.write('Suba cualquier imagen que creas que sea en una de las clases y comprueba si la perdicción es correcta')
+    st.write('Suba cualquier imagen que sea en una de las clases (airplane, automobile, bird, cat, deer, frog, horse, ship, truck, dog) y comprueba si la perdicción es correcta')
     
     file = st.file_uploader('Porfavor subo la imagen', type=['jpg', 'png', 'webp'])
     if file:
