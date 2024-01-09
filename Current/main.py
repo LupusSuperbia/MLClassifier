@@ -5,7 +5,7 @@ import os
 from PIL import Image
 
 import tensorflow as tf
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 
 def main(): 
     st.title('Cifar10 Web Classifier')
@@ -32,7 +32,7 @@ def main():
         if os.path.exists(model_path):
         # Carga el modelo desde el archivo cifar10_model.h5
             model = tf.keras.models.load_model(model_path)
-            print("Modelo cargado exitosamente.")
+
             predictions = model.predict(img_array)
             cifar10_classes = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'frog', 'horse', 'ship', 'truck', 'dog']
 
@@ -47,7 +47,7 @@ def main():
             st.pyplot(fig=fig)
             pass
         else:
-            print(f"No se encontró el archivo {model_filename} en el directorio {current_directory}. Verifica la ruta y el nombre del archivo.")
+            st.text(f"No se encontró el archivo {model_filename} en el directorio {current_directory}. Verifica la ruta y el nombre del archivo.")
 
     else : 
         st.text('No has subido ninguna imagen')
